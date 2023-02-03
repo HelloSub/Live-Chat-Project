@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row">
+    <h2>Realtime Chat Application</h2>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-sm-5">
+      <h5>User-Name</h5>
+      <select (change)="onChangeList()  " name="roomInput" #itemName class="form-control" [(ngModel)]="name"
+        id="itemName">
+        <option value="" [defaultSelected]=true selected disabled>Select the user Name</option>
+        <option *ngFor="let item of list" value={{item.name}}>{{item.name}}</option>
+        <!-- <option value="sumit">sumit</option>
+        <option value="rakesh">rakesh</option>
+        <option value="rohit">rohit</option>
+        <option value="priya">priya</option>
+        <option value="madhu">madhu</option>
+        <option value="suraj">suraj</option> -->
+      </select>
+    </div>
+    <div class="col sm-2">
+      <div style="margin-top:19px;" class="pull-right">
+        <button type="button" class="btn btn-outline-primary mb-2 me-2" (click)="setupSocketConnection()"
+          [disabled]="name==displayName">Join</button>
+        <button type="button" class="btn btn-outline-primary mb-2 me-2" (click)="disconnect()">leave</button>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+
+
+
+  <div class="container">
+    <h3 class=" text-center">Stream Messaging</h3>
+    <div class="messaging">
+      <div class="inbox_msg">
+        <div class="inbox_people">
+          <div class="headind_srch">
+            <div class="channel_heading">
+              <h4>Members</h4>
+            </div>
+          </div>
+          <div class="inbox_chat">
+            <div class="channels" *ngIf="displayName!=''">
+              <div class="chat_list" *ngFor="let item of userList">
+                <div class="chat_people">
+                  <div class="chat_ib">
+                    <h5>
+                      {{item.name}}
+                    </h5>
+                    <p>
+                      hello
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-messages">
+          <div class="chat-messages-show-container">
+            <li class="chat-messages-show-list" id="message-list">
+            </li>
+          </div>
+          <div class="chat-messages-create-container">
+            <input class="chat-messages-create-input" type="text" [(ngModel)]="message" placeholder="Type a message">
+            <button class="chat-messages-create-button" [disabled]="message==='' || !displayName "
+              (click)="SendMessage()"> Send </button>
+            <!-- <button class="msg_send_btn" type="button">
+              <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+            </button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

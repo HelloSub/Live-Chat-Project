@@ -1,0 +1,159 @@
+<div class="container-fluid">
+  <div class="row">
+    <h2>Realtime Chat Application</h2>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-sm-5">
+      <h5>User-Name</h5>
+      <select (change)="onChangeList()  " name="roomInput" #itemName class="form-control" [(ngModel)]="name"
+        id="itemName">
+        <option value="" [defaultSelected]=true selected disabled>Select the user Name</option>
+        <option *ngFor="let item of list" value={{item.name}}>{{item.name}}</option>
+        <!-- <option value="sumit">sumit</option>
+        <option value="rakesh">rakesh</option>
+        <option value="rohit">rohit</option>
+        <option value="priya">priya</option>
+        <option value="madhu">madhu</option>
+        <option value="suraj">suraj</option> -->
+      </select>
+    </div>
+    <div class="col sm-2">
+      <div style="margin-top:19px;" class="pull-right">
+        <button type="button" class="btn btn-outline-primary mb-2 me-2" (click)="setupSocketConnection()"
+          [disabled]="name==displayName">Join</button>
+        <button type="button" class="btn btn-outline-primary mb-2 me-2" (click)="disconnect()">leave</button>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+
+
+
+  <section style="background-color: #eee;">
+    <div class="img">
+      <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" style="width: 100px;"
+        alt="Avatar" />
+      <h5 class="mb-2"><strong>{{displayName}}</strong></h5>
+    </div>
+
+
+    <div class="container py-5">
+
+      <div class="row">
+
+        <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+
+          <h5 class="font-weight-bold mb-3 text-center text-lg-start">Member</h5>
+
+          <div class="card" *ngIf="displayName!=''">
+            <div class="card-body">
+
+              <ul class="list-unstyled mb-0" *ngFor="let item of userList ">
+                <li class="p-2 border-bottom" style="background-color: #eee;">
+                  <a href="#!" class="d-flex justify-content-between">
+                    <div class="d-flex flex-row">
+                      <img
+                        src="https://www.bollywoodhungama.com/wp-content/uploads/2016/03/Dabboo-Hrithik-00052-copy2368281.jpg"
+                        alt="avatar" class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="15">
+                      <div class="pt-1">
+                <li class="fw-bold mb-0">{{item.name}}</li>
+                <!-- <li class="small text-muted">hello</li> -->
+            </div>
+          </div>
+          <div class="pt-1">
+            <!-- <p class="small text-muted mb-1">Just now</p> -->
+            <!-- <span class="badge bg-danger float-end">1</span> -->
+          </div>
+          </a>
+          </li>
+          </ul>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-6 col-lg-7 col-xl-8">
+
+      <ul class="list-unstyled">
+        <!-- <li class="d-flex justify-content-between mb-4">
+          <img src="" alt="" class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
+          <div class="card ">
+            <div class="card-header d-flex justify-content-between  p-6 ">
+
+
+            </div>
+
+          </div>
+        </li> -->
+        <!-- <li class="bg-white mb-3">
+          <div class="form-outline" id="message-list">
+            <textarea class="form-control" id="textAreaExample2" rows="4" placeholder="Enter a Message......"
+              [(ngModel)]="message"></textarea>
+          </div>
+        </li> -->
+        <!-- <button type="button" class="btn btn-info btn-rounded float-end" (click)="SendMessage()">Send</button> -->
+
+        <div class="chat-messages">
+          <div class="chat-messages-show-container">
+            <li class="chat-messages-show-list" id="message-list">
+            </li>
+          </div>
+          <div class="chat-messages-create-container">
+            <div class="form-outline" id="message-list">
+              <textarea class="form-control" id="textAreaExample2" rows="4" placeholder="Enter a Message......"
+                [(ngModel)]="message"></textarea>
+              <br />
+              <button type="button" class="btn btn-info btn-rounded float-end" (click)="SendMessage()"
+                [disabled]="message==='' || !displayName ">Send</button>
+            </div>
+
+          </div>
+        </div>
+
+      </ul>
+
+    </div>
+
+</div>
+
+</div>
+</section>
+
+
+
+
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #fccb90;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to bottom right, rgba(252, 203, 144, 1), rgba(213, 126, 235, 1));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to bottom right, rgba(252, 203, 144, 1), rgba(213, 126, 235, 1))
+  }
+
+  .mask-custom {
+  background: rgba(24, 24, 16, .2);
+  border-radius: 2em;
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  background-clip: padding-box;
+  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+  }
+  .img{
+    text-align: right;
+    margin-right: 100px;
+  }
+  .mb-2{
+    text-align: right;
+    margin-right: 16px;
+  }
+  .button{
+
+  }
+
